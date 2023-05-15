@@ -10,9 +10,10 @@
 - [Xhaely](https://github.com/Xhaely).
 
 ## Projet
-
+Site de gestion de table JdR avec une vue "Joueur" et une vue "MJ" en mode jeu et un mode admin pour les parametrages de la table.
 ## Stack
  - Laravel
  - Vue.js
  - Tailwindcss
+ ### Librairie JS 
  
