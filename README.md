@@ -12,8 +12,12 @@
 ## Projet
 Site de gestion de table JdR avec une vue "Joueur" et une vue "MJ" en mode jeu et un mode admin pour les parametrages de la table.
 ## Stack
+### Framework
+#### PHP
  - Laravel
+ #### Javascript
  - Vue.js
+ #### CSS
  - Tailwindcss
  ### Librairie JS 
  
