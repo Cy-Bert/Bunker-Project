@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->longText('desc');
             $table->string('image');
-            $table->foreignId('tables_id');
+            $table->foreignId('table_id');
         });
     }
 
