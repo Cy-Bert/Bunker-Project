@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->longText('desc');
-            $table->foreignId('char_id');
+            $table->enum('type', ['bonus', 'malus']);
+            $table->foreignId('character_id');
         });
     }
 

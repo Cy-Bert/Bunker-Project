@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->longText('desc');
             $table->string('stats')->nullable();
-            $table->foreignId('char_id');
+            $table->foreignId('character_id');
         });
     }
 

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('relations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('char_id');
-            $table->foreignId('to_char_id');
+            $table->foreignId('character_id');
+            $table->foreignId('to_character_id')->references('id')->on('characters');
             $table->integer('relation');
         });
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->tinyInteger('health');
             $table->tinyInteger('stamina');
             $table->tinyInteger('luck');
-            $table->longText('backstory');
+            $table->longText('notes_MJ');
             $table->string('avatar');
             $table->integer('age');
             $table->integer('size');
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->enum('type', ['PJ', 'PNJ']);
             $table->string('status')->nullable();
             $table->longText('notes')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->foreignId('table_id');
             $table->string('code_invit');
         });
