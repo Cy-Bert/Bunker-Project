@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('perks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->longText('desc');
             $table->enum('type', ['bonus', 'malus']);
             $table->foreignId('character_id');
