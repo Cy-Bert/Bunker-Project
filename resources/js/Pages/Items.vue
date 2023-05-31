@@ -31,8 +31,8 @@
   export default {
     data() {
       return {
-        items: [], // Array to hold the list of items
-        newItem: { // Object to hold the form data for creating a new item
+        items: [],
+        newItem: {
           name: '',
           desc: '',
           stats: ''
@@ -40,16 +40,33 @@
       }
     },
     methods: {
-      createItem() {
-        // Make API request to create a new item using this.newItem data
-        // After successful creation, update the items array with the new item
-        // Clear the form inputs
+      async fetchItems() {
+        // Make GET request to fetch all items
+        this.items = await this.$inertia.get('/items');
       },
-      deleteItem(itemId) {
-        // Make API request to delete the item with the given itemId
-        // After successful deletion, remove the item from the items array
+      async createItem() {
+        // Make POST request to create a new item
+        const response = await this.$inertia.post('/items', this.newItem);
+  
+        // Update the items array with the newly created item
+        this.items.push(response.data);
+  
+        // Clear the form inputs
+        this.newItem.name = '';
+        this.newItem.desc = '';
+        this.newItem.stats = '';
+      },
+      async deleteItem(itemId) {
+        // Make DELETE request to delete the item with the given itemId
+        await this.$inertia.delete(`/items/${itemId}`);
+  
+        // Remove the deleted item from the items array
+        this.items = this.items.filter(item => item.id !== itemId);
       }
+    },
+    mounted() {
+      // Fetch items when the component is mounted
+      this.fetchItems();
     }
   }
   </script>
-  
