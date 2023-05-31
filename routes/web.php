@@ -33,3 +33,9 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+Route::get('/items', [ItemController::class, 'index']);
+Route::post('/items', [ItemController::class, 'store']);
+Route::get('/items/{item}', [ItemController::class, 'show']);
+Route::put('/items/{item}', [ItemController::class, 'update']);
+Route::delete('/items/{item}', [ItemController::class, 'destroy']);
+
