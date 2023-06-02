@@ -58,7 +58,7 @@ class TableController extends Controller
      */
     public function edit(Table $table)
     {
-        //
+        return Inertia::render('Tables/Edit', compact('table'));
     }
 
     /**
@@ -66,7 +66,16 @@ class TableController extends Controller
      */
     public function update(Request $request, Table $table)
     {
-        //
+        Validator::make($request->all(), [
+            'title' => ['required'],
+            'body' => ['required'],
+        ])->validate();
+
+        if ($request->has('id')) {
+            Table::find($request->input('id'))->update($request->all());
+            return redirect()->back()
+                    ->with('message', 'Table bien modifiée');
+        }
     }
 
     /**
@@ -74,6 +83,7 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
-        //
+        $table->delete();
+        return redirect()->back()->with('message', 'Table Deleted Successfully.');
     }
 }

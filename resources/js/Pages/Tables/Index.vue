@@ -1,62 +1,59 @@
-
 <template>
+    <app-layout>
+        <div class="bg-slate-200 w-[98%] mx-auto my-8">
+            <table class="table-fixed">
+                <thead class="">
+                    <th class="px-4">id</th>
+                    <th class="px-4">name</th>
+                    <th class="px-4">desc</th>
+                    <th class="px-4">status</th>
+                    <th class="px-4">food</th>
+                    <th class="px-4">heat</th>
+                    <th class="px-4">heal</th>
+                    <th class="px-4">ammo</th>
+                    <th class="px-4">notes</th>
+                    <th class="px-4">user id</th>
+                </thead>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <div className="flex items-center justify-between mb-6">
-                            <Link
-                                className="px-6 py-2 text-white bg-green-500 rounded-md focus:outline-none"
-                                :href="route('tables.create')"
-                            >
-                                Create table
-                            </Link>
-                        </div>
-                        <table className="table-fixed w-full">
-                            <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="px-4 py-2 w-20">No.</th>
-                                    <th className="px-4 py-2">Title</th>
-                                    <th className="px-4 py-2">Body</th>
-                                    <th className="px-4 py-2">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="table in tables">
-                                    <td className="border px-4 py-2">{{ table.id }}</td>
-                                    <td className="border px-4 py-2">{{ table.name }}</td>
-                                    <td className="border px-4 py-2">{{ table.desc }}</td>
-                                    <td className="border px-4 py-2">
-                                        <Link
-                                            tabIndex="1"
-                                            className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
-                                            :href="route('tables.edit', table.id)"
-                                        >
-                                            Edit
-                                        </Link>
-                                        <button
-                                            @click="destroy(table.id)"
-                                            tabIndex="-1"
-                                            type="button"
-                                            className="mx-1 px-4 py-2 text-sm text-white bg-red-500 rounded"
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                <tbody class="">
+                    <tr v-for="table in tables" class="border-slate-400 border-y-2">
+                        <td class="px-4">{{ table.id }}</td>
+                        <td class="px-4">{{ table.name }}</td>
+                        <td class="px-4">{{ table.desc }}</td>
+                        <td class="px-4">{{ table.status }}</td>
+                        <td class="px-4">{{ table.food }}</td>
+                        <td class="px-4">{{ table.heat }}</td>
+                        <td class="px-4">{{ table.heal }}</td>
+                        <td class="px-4">{{ table.ammo }}</td>
+                        <td class="px-4">{{ table.notes }}</td>
+                        <td class="px-4">{{ table.user_id }}</td>
+
+                        <button @click="edit(table)" class="bg-blue-400 my-3 mx-auto px-4 rounded hover:scale-105 hover:bg-blue-500 ease-in-out duration-75">edit</button>
+                        <button @click="destroy(table)" class="bg-blue-400 my-3 mx-auto px-2 rounded hover:scale-105 hover:bg-blue-500 ease-in-out duration-75">delete</button>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </app-layout>
 </template>
 
 <script>
-export default {
-    props: {
-        tables: Array,
-    },
-};
+    import AppLayout from './../../Layouts/AppLayout.vue'
+    export default {
+        components: {
+            AppLayout,
+        },
+
+        props: ['tables'],
+
+        methods: {
+            destroy(table) {
+                this.$inertia.delete('/tables/' + table.id, table)
+            },
+
+            edit(table) {
+                this.$inertia.get('/tables/' + table.id + '/edit' , table);
+            },
+        },
+    }
 </script>
