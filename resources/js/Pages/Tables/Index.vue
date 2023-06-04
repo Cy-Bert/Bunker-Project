@@ -57,9 +57,10 @@
             },
 
             create(table) {
-            console.log(table);
-            this.$inertia.get('/tables/create', table)
-        }
+                console.log("Create method called");
+                console.log(table);
+                this.$inertia.get('/tables/create', table);
+}
 
         },
     }

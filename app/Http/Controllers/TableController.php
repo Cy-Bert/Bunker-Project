@@ -22,24 +22,37 @@ class TableController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name' => ['required'],
-            'desc' => ['required'],
-            'status' => ['required'],
-            'food' => ['required'],
-            'heat' => ['required'],
-            'heal' => ['required'],
-            'ammo' => ['required'],
-            'notes' => ['required'],
-        ]
-        );
+        $data =[
+            'nom' => 'nouvelle table',
+            'desc' => 'TALE DU CULL'
 
-        Table::create($request->all());
-        return redirect()->back()
-                    ->with('message', 'Table Created Successfully.');
+        ];
+
+        return inertia('tables/create', [
+            'data' => $data,
+        ]);
     }
+
+    // {
+    //     $request->validate([
+    //         'name' => ['required'],
+    //         'desc' => ['required'],
+    //         'status' => ['required'],
+    //         'food' => ['required'],
+    //         'heat' => ['required'],
+    //         'heal' => ['required'],
+    //         'ammo' => ['required'],
+    //         'notes' => ['required'],
+    //     ]
+    //     );
+
+    //     Table::create($request->all());
+    //     return redirect()->back()
+    //                 ->with('message', 'Table Created Successfully.');
+    // }
+
 
     /**
      * Store a newly created resource in storage.
