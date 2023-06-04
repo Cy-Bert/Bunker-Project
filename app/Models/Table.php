@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Table extends Model
 {
+    public $timestamps = false;
     use HasFactory;
     protected $fillable = [
         'name',
@@ -17,6 +18,5 @@ class Table extends Model
         'heal',
         'ammo',
         'notes',
-        'user_id',
     ];
 }

@@ -22,28 +22,69 @@ class TableController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'desc' => ['required'],
+            'status' => ['required'],
+            'food' => ['required'],
+            'heat' => ['required'],
+            'heal' => ['required'],
+            'ammo' => ['required'],
+            'notes' => ['required'],
+        ]
+        );
+
+        Table::create($request->all());
+        return redirect()->back()
+                    ->with('message', 'Table Created Successfully.');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        Validator::make($request->all(), [
+    // public function store(Request $request)
+    // {
+    //     Validator::make($request->all(), [
+    //         'name' => ['required'],
+    //         'desc' => ['required'],
+    //         'status' => ['required'],
+    //         'food' => ['required'],
+    //         'heat' => ['required'],
+    //         'heal' => ['required'],
+    //         'ammo' => ['required'],
+    //         'notes' => ['required'],
+    //     ])->validate();
 
-            'title' => ['required'],
+        // Post::create($request->all(),[
+        //     'name' => $request->name,
+        //     'desc' => $request->desc,
+        //     'status' => $request->status,
+        //     'food' => intval($request->food),
+        //     'heat' => intval($request->heat),
+        //     'heal' => intval($request->heal),
+        //     'ammo' => intval($request->ammo),
+        //     'notes' => $request->notes,
+        // ]);
 
-            'body' => ['required'],
 
-        ])->validate();
-        Table::create($request->all());
-        return redirect()->back()
+        // Post::create($request->all(),[
+        //     'name' => $request->name,
+        //     'desc' => $request->desc,
+        //     'status' => $request->status,
+        //     'food' => intval($request->food),
+        //     'heat' => intval($request->heat),
+        //     'heal' => intval($request->heal),
+        //     'ammo' => intval($request->ammo),
+        //     'notes' => $request->notes,
+        // ]);
 
-                    ->with('message', 'Table Created Successfully.');
-    }
+
+    //     return redirect()->back()
+
+    //                 ->with('message', 'Table Created Successfully.');
+    // }
 
     /**
      * Display the specified resource.
@@ -67,15 +108,29 @@ class TableController extends Controller
     public function update(Request $request, Table $table)
     {
         Validator::make($request->all(), [
-            'title' => ['required'],
-            'body' => ['required'],
+            'name' => ['required'],
+            'desc' => ['required'],
+            'status' => ['required'],
+            'food' => ['required'],
+            'heat' => ['required'],
+            'heal' => ['required'],
+            'ammo' => ['required'],
+            'notes' => ['required'],
         ])->validate();
 
-        if ($request->has('id')) {
-            Table::find($request->input('id'))->update($request->all());
-            return redirect()->back()
-                    ->with('message', 'Table bien modifiée');
-        }
+        $table->update([
+            'name' => $request->name,
+            'desc' => $request->desc,
+            'status' => $request->status,
+            'food' => intval($request->food),
+            'heat' => intval($request->heat),
+            'heal' => intval($request->heal),
+            'ammo' => intval($request->ammo),
+            'notes' => $request->notes,
+        ]);
+
+        // $table = Table::find($request->input('id'))->update($request->all());
+        // return ('Table bien modifiée');
     }
 
     /**

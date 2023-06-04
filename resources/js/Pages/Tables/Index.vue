@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="bg-slate-200 w-[98%] mx-auto my-8">
+        <div class="bg-slate-200 w-[98%] mx-auto mt-8">
             <table class="table-fixed">
                 <thead class="">
                     <th class="px-4">id</th>
@@ -34,6 +34,7 @@
                 </tbody>
             </table>
         </div>
+        <button @click="create(table)" class="mx-auto bg-red-500 hover:scale-105 hover:bg-red-600 ease-in-out duration-75 rounded w-20 h-8 block mt-4">Add +</button>
     </app-layout>
 </template>
 
@@ -54,6 +55,12 @@
             edit(table) {
                 this.$inertia.get('/tables/' + table.id + '/edit' , table);
             },
+
+            create(table) {
+            console.log(table);
+            this.$inertia.get('/tables/create', table)
+        }
+
         },
     }
 </script>

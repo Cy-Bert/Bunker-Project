@@ -1,6 +1,6 @@
 
 <template>
-    <AppLayout title="Tables">
+    <AppLayout title="">
 
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -45,8 +45,10 @@
                                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
+
 
                     <div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400" v-if="isOpen">
                         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -102,21 +104,19 @@
                                         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
                                             <button @click="closeModal()" type="button"
                                                 class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-
                                                 Cancel
-
                                             </button>
                                         </span>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
-
     </AppLayout>
 </template>
 
@@ -166,7 +166,7 @@ export default {
         },
 
         save: function (data) {
-            this.$inertia.post('/tables', data)
+            this.$inertia.post('/', data)
             this.reset();
             this.closeModal();
             this.editMode = false;
@@ -180,7 +180,7 @@ export default {
 
         update: function (data) {
             data._method = 'PUT';
-            this.$inertia.post('/tables/' + data.id, data)
+            this.$inertia.post('//' + data.id, data)
             this.reset();
             this.closeModal();
         },
@@ -188,10 +188,13 @@ export default {
         deleteRow: function (data) {
             if (!confirm('Are you sure want to remove?')) return;
             data._method = 'DELETE';
-            this.$inertia.post('/tables/' + data.id, data)
+            this.$inertia.post('//' + data.id, data)
             this.reset();
             this.closeModal();
-        }
+        },
+
+
+
     }
 }
 
