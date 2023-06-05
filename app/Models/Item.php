@@ -15,7 +15,9 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
-        'body'
+        'name',
+        'desc',
+        'stats',
+        'character_id'
     ];
 }
