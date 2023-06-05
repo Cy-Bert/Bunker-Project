@@ -4,50 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Validator;
 
 class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::all();
-        return response()->json($items);
+        $data = Item::all();
+        return Inertia::render('items', ['item' => $data]);
     }
 
     public function store(Request $request)
     {
-        $item = new Item();
-        $item->name = $request->input('name');
-        $item->desc = $request->input('desc');
-        $item->stats = $request->input('stats');
-        $item->character_id = $request->input('character_id');
-        $item->save();
+        Validator::make($request->all(), [
 
-        return response()->json($item, 201);
-    }
+            'name' => ['required'],
+            'desc' => ['required'],
+            'stats' => ['required'],
+            'character_id' => ['required'],
+        ])->validate();
 
-    public function show($id)
-    {
-        $item = Item::findOrFail($id);
-        return response()->json($item);
+        Item::create($request->all());
+
+        return redirect()->back()
+            ->with('message', 'Item Created Successfully.');
     }
 
     public function update(Request $request, $id)
     {
-        $item = Item::findOrFail($id);
-        $item->name = $request->input('name');
-        $item->desc = $request->input('desc');
-        $item->stats = $request->input('stats');
-        $item->character_id = $request->input('character_id');
-        $item->save();
+        Validator::make($request->all(), [
 
-        return response()->json($item);
+            'name' => ['required'],
+            'desc' => ['required'],
+            'stats' => ['required'],
+            'character_id' => ['required'],
+        ])->validate();
+
+        if ($request->has('id')) {
+            Item::find($request->input('id'))->update($request->all());
+            return redirect()->back()
+                ->with('message', 'Item Updated Successfully.');
+        }
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $item = Item::findOrFail($id);
-        $item->delete();
-
-        return response()->json(null, 204);
+        if ($request->has('id')) {
+            Item::find($request->input('id'))->delete();
+            return redirect()->back();
+        }
     }
 }
