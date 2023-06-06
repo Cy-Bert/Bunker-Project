@@ -48,11 +48,9 @@ class ItemController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Item $item)
     {
-        if ($request->has('id')) {
-            Item::find($request->input('id'))->delete();
-            return redirect()->back();
-        }
+        $item->delete();
+        session()->flash('flash.banner', 'Item supprimée avec succès');
     }
 }
