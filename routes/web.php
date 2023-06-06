@@ -37,6 +37,6 @@ Route::middleware([
 });
 
 Route::resource("tables", TableController::class);
-Route::put('/tables/{table}', [TableController::class, 'update']);
-Route::get('/tables/create', [TableController::class, 'create']);
+// Route::put('/tables/{table}', [TableController::class, 'update']);
+// Route::get('/tables/create', [TableController::class, 'create']);
 

@@ -1,7 +1,7 @@
 <template>
     <app-layout>
         <div class="bg-slate-200 w-[98%] mx-auto mt-8">
-            <table class="table-fixed">
+            <table class="table-fixed w-full">
                 <thead class="">
                     <th class="px-4">id</th>
                     <th class="px-4">name</th>
@@ -12,7 +12,6 @@
                     <th class="px-4">heal</th>
                     <th class="px-4">ammo</th>
                     <th class="px-4">notes</th>
-                    <th class="px-4">user id</th>
                 </thead>
 
                 <tbody class="">
@@ -26,10 +25,9 @@
                         <td class="px-4">{{ table.heal }}</td>
                         <td class="px-4">{{ table.ammo }}</td>
                         <td class="px-4">{{ table.notes }}</td>
-                        <td class="px-4">{{ table.user_id }}</td>
 
                         <button @click="edit(table)" class="bg-blue-400 my-3 mx-auto px-4 rounded hover:scale-105 hover:bg-blue-500 ease-in-out duration-75">edit</button>
-                        <button @click="destroy(table)" class="bg-blue-400 my-3 mx-auto px-2 rounded hover:scale-105 hover:bg-blue-500 ease-in-out duration-75">delete</button>
+                        <button @click="destroy(table)" class="bg-red-500 my-3 mx-auto px-2 rounded hover:scale-105 hover:bg-red-600 ease-in-out duration-75">delete</button>
                     </tr>
                 </tbody>
             </table>
@@ -40,6 +38,7 @@
 
 <script>
     import AppLayout from './../../Layouts/AppLayout.vue'
+
     export default {
         components: {
             AppLayout,
@@ -57,11 +56,8 @@
             },
 
             create(table) {
-                console.log("Create method called");
-                console.log(table);
                 this.$inertia.get('/tables/create', table);
-}
-
+            },
         },
     }
 </script>

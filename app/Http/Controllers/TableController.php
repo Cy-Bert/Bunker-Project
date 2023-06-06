@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Table;
-use Illuminate\Http\Request;
-
 use Inertia\Inertia;
+use App\Models\Table;
+
+
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 use Illuminate\Support\Facades\Validator;
+
 
 class TableController extends Controller
 {
@@ -24,15 +27,7 @@ class TableController extends Controller
      */
     public function create()
     {
-        $data =[
-            'nom' => 'nouvelle table',
-            'desc' => 'TALE DU CULL'
-
-        ];
-
-        return inertia('tables/create', [
-            'data' => $data,
-        ]);
+        return Inertia::render('Tables/Create');
     }
 
     // {
@@ -57,18 +52,24 @@ class TableController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(Request $request)
-    // {
-    //     Validator::make($request->all(), [
-    //         'name' => ['required'],
-    //         'desc' => ['required'],
-    //         'status' => ['required'],
-    //         'food' => ['required'],
-    //         'heat' => ['required'],
-    //         'heal' => ['required'],
-    //         'ammo' => ['required'],
-    //         'notes' => ['required'],
-    //     ])->validate();
+    public function store(Request $request)
+    {
+        $valid_data = Validator::make($request->all(), [
+            'name' => ['required'],
+            'desc' => ['required'],
+            'status' => ['required'],
+        ])->validate();
+
+        // $valid_data['user_id'] = auth()->id();
+
+        Table::create($valid_data);
+
+        session()->flash('flash.banner', 'Table créée avec succès');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('tables.index');
+
+    }
 
         // Post::create($request->all(),[
         //     'name' => $request->name,
@@ -120,30 +121,23 @@ class TableController extends Controller
      */
     public function update(Request $request, Table $table)
     {
-        Validator::make($request->all(), [
+        $test = Validator::make($request->all(), [
             'name' => ['required'],
             'desc' => ['required'],
             'status' => ['required'],
-            'food' => ['required'],
-            'heat' => ['required'],
-            'heal' => ['required'],
-            'ammo' => ['required'],
+            'food' => ['required', 'integer'],
+            'heat' => ['required', 'integer'],
+            'heal' => ['required', 'integer'],
+            'ammo' => ['required', 'integer'],
             'notes' => ['required'],
         ])->validate();
 
-        $table->update([
-            'name' => $request->name,
-            'desc' => $request->desc,
-            'status' => $request->status,
-            'food' => intval($request->food),
-            'heat' => intval($request->heat),
-            'heal' => intval($request->heal),
-            'ammo' => intval($request->ammo),
-            'notes' => $request->notes,
-        ]);
+        $table->update($test);
 
-        // $table = Table::find($request->input('id'))->update($request->all());
-        // return ('Table bien modifiée');
+        session()->flash('flash.banner', 'Table modifiée avec succès');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('tables.index');
     }
 
     /**
@@ -152,6 +146,6 @@ class TableController extends Controller
     public function destroy(Table $table)
     {
         $table->delete();
-        return redirect()->back()->with('message', 'Table Deleted Successfully.');
+        session()->flash('flash.banner', 'Table supprimée avec succès');
     }
 }

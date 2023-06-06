@@ -18,5 +18,6 @@ class Table extends Model
         'heal',
         'ammo',
         'notes',
+        'user_id',
     ];
 }

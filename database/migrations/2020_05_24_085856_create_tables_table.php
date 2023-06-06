@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->longText('desc');
             $table->enum('status', ['en création', 'en cours', 'archivée']);
-            $table->integer('food');
-            $table->integer('heat');
-            $table->integer('heal');
-            $table->integer('ammo');
-            $table->longText('notes');
-            $table->foreignId('user_id');
+            $table->integer('food')->default(0);
+            $table->integer('heat')->default(0);
+            $table->integer('heal')->default(0);
+            $table->integer('ammo')->default(0);
+            $table->longText('notes')->nullable();
+            $table->foreignId('user_id')->nullable();
         });
     }
 
