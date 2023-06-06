@@ -2,7 +2,7 @@
   <app-layout>
       <template #header>
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-              Manage item - (Laravel 9 Inertia JS CRUD with Jetstream & Tailwind CSS - ItSolutionStuff.com)
+              Manage item 
           </h2>
       </template>
       <div class="py-12">
@@ -20,9 +20,10 @@
                       <thead>
                           <tr class="bg-gray-100">
                               <th class="px-4 py-2 w-20">No.</th>
-                              <th class="px-4 py-2">Title</th>
-                              <th class="px-4 py-2">Body</th>
-                              <th class="px-4 py-2">Action</th>
+                              <th class="px-4 py-2">Name</th>
+                              <th class="px-4 py-2">Desc</th>
+                              <th class="px-4 py-2">Stats</th>
+                              <th class="px-4 py-2">Character ID</th>
                           </tr>
                       </thead>
                       <tbody>

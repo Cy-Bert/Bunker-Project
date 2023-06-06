@@ -12,7 +12,7 @@ class ItemController extends Controller
     public function index()
     {
         $data = Item::all();
-        return Inertia::render('items', ['item' => $data]);
+        return Inertia::render('items', ['data' => $data]);
     }
 
     public function store(Request $request)
