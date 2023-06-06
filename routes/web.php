@@ -36,3 +36,4 @@ Route::middleware([
 });
 
 Route::resource('items', ItemController::class);
+// Route::get('/item', [ItemController::class, 'index']);
