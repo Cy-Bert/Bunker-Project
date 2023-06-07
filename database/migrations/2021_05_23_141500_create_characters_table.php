@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('health');
-            $table->tinyInteger('stamina');
-            $table->tinyInteger('luck');
-            $table->longText('notes_MJ');
-            $table->string('avatar');
+            $table->tinyInteger('health')->default(4);
+            $table->tinyInteger('stamina')->default(4);
+            $table->tinyInteger('luck')->default(4);
+            $table->longText('notes_MJ')->nullable();
+            $table->string('avatar')->nullable();
             $table->integer('age');
             $table->integer('size');
             $table->enum('gender', ['homme', 'femme', 'non-binaire']);
@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->longText('notes')->nullable();
             $table->foreignId('user_id')->nullable();
-            $table->foreignId('table_id');
-            $table->string('code_invit');
+            $table->foreignId('table_id')->default(1);
+            $table->string('code_invit')->nullable();
         });
     }
 
