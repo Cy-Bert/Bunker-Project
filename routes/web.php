@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\RelationController;
 
+use App\Http\Controllers\CharacterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,3 +38,4 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+Route::resource('characters', CharacterController::class);
