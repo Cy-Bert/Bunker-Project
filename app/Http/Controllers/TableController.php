@@ -55,7 +55,7 @@ class TableController extends Controller
     public function store(Request $request)
     {
         $valid_data = Validator::make($request->all(), [
-            'name' => ['required'],
+            'name' => ['required', ''],
             'desc' => ['required'],
             'status' => ['required'],
         ])->validate();
@@ -105,7 +105,7 @@ class TableController extends Controller
      */
     public function show(Table $table)
     {
-        //
+        return Inertia::render('Tables/Show', compact('table'));
     }
 
     /**
@@ -123,14 +123,16 @@ class TableController extends Controller
     {
         $test = Validator::make($request->all(), [
             'name' => ['required'],
-            'desc' => ['required'],
+            'desc' => ['nullable'],
             'status' => ['required'],
-            'food' => ['required', 'integer'],
-            'heat' => ['required', 'integer'],
-            'heal' => ['required', 'integer'],
-            'ammo' => ['required', 'integer'],
-            'notes' => ['required'],
+            'food' => ['numeric'],
+            'heat' => ['numeric'],
+            'heal' => ['numeric'],
+            'ammo' => ['numeric'],
+            'notes' => ['nullable'],
         ])->validate();
+
+
 
         $table->update($test);
 
