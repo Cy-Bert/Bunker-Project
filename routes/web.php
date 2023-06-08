@@ -4,6 +4,7 @@ use App\Models\Perk;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\PerkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +36,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/perks', function () {
-    return Inertia::render('Perks', [
-        'perks' => Perk::with('character')->get()
-    ]);
-})->name('perks');
+Route::resource('perks',PerkController::class)->names('perks');;
