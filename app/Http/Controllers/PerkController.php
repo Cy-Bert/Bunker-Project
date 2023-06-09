@@ -82,7 +82,7 @@ class PerkController extends Controller
         session()->flash('flash.banner', 'Perk modifiée avec succès');
         session()->flash('flash.bannerStyle', 'success');
 
-        return redirect()->route('perk.index');
+        return redirect()->route('perks.index');
 
     }
 

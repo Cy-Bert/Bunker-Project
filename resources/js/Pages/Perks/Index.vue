@@ -1,41 +1,48 @@
-
-
 <template>
     <BunkerLayout>
         <section>
-            <button @click="create()"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Create New Perk</button>
-            <div class="tbl-header  mb-1 border-2">
-                <div class="w-full table-fixed">
-                    <table>
-                        <thead class="bg-[#db0a0a23]">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Desc</th>
-                            <th>Type</th>
-                            <th>Character Name</th>
-                            <th>Actions</th>
-                        </thead>
-                        <tbody class="bg">
-                            <tr v-for="perk in perks" :key="perk.id">
-                                <td class="text-center font-normal rounded-lg border-b border-black ">{{ perk.id }}</td>
-                                <td class="text-center font-normal rounded-lg border-b border-black">{{ perk.name }}</td>
-                                <td class="text-center font-normal rounded-lg border-b border-black">{{ perk.desc }}</td>
-                                <td class="text-center font-normal rounded-lg border-b border-black">{{ perk.type }}</td>
-                                <td class="text-center font-normal rounded-lg border-b border-black">{{ perk.character.name
-                                }}</td>
-                                <td
-                                    class="action justify-center items-center content-center text-center font-normal rounded-lg border-b border-black">
-                                    <button @click="edit(perk)"
-                                        class="bg-blue-400 my-3 mx-auto px-4 rounded hover:scale-105 hover:bg-blue-500 ease-in-out duration-75">edit</button>
-                                    <button @click="destroy(perk)"
-                                        class="bg-red-500 my-3 mx-auto px-2 rounded hover:scale-105 hover:bg-red-600 ease-in-out duration-75">delete</button>
-                                    <button @click="show(perk)"
-                                        class="bg-amber-500 my-3 mx-auto px-2 rounded hover:scale-105 hover:bg-amber-600 ease-in-out duration-75">show</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+            <div class="flex items-center justify-center min-h-screen bg-gray-900 flex-col">
+                <button @click="create()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Create New
+                    Perk</button>
+                <div class="col-span-12">
+                    <div class="overflow-auto lg:overflow-visible ">
+                        <table class="table text-gray-400 border-separate space-y-6 text-sm">
+                            <thead class="bg-gray-800 text-gray-500">
+                                <tr>
+                                    <th class="uppercase font-extrabold p-5">ID</th>
+                                    <th class="uppercase font-extrabold p-3">Name</th>
+                                    <th class="uppercase font-extrabold p-3">Desc</th>
+                                    <th class="uppercase font-extrabold p-8">Type</th>
+                                    <th class="uppercase font-extrabold p-3">Character Id</th>
+                                    <th class="uppercase font-extrabold p-3">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr v-for="perk in perks" :key="perk.id" class="bg-gray-800">
+                                    <td class="text-gray-300 text-center rounded-lg border-b border-black font-semibold ">{{ perk.id }}</td>
+                                    <td class="text-gray-300 text-center font-normal rounded-lg border-b border-black">{{ perk.name }}
+                                    </td>
+                                    <td class="text-gray-300 text-center font-normal rounded-lg border-b border-black">{{ perk.desc }}
+                                    </td>
+                                    <td class="text-gray-300 text-center font-normal rounded-lg border-b border-black uppercase">{{ perk.type }}
+                                    </td>
+                                    <td class="text-gray-300 text-center font-normal rounded-lg border-b border-black">{{
+                                        perk.character_id
+                                    }}</td>
+                                    <td class="action justify-center items-center content-center text-center font-normal rounded-lg border-b border-black gap-2 flex flex-wrap p-2" >
+                                        <button @click="edit(perk)"
+                                            class="bg-blue-400 my-1 mx-auto px-4 rounded hover:scale-105 hover:bg-blue-500 ease-in-out duration-75 text-white">Edit</button>
+                                        <button @click="show(perk)"
+                                            class="bg-amber-500 my-1 mx-auto px-2 rounded hover:scale-105 hover:bg-amber-600 ease-in-out duration-75 text-white">Show</button>
+                                        <button @click="destroy(perk)"
+                                            class="bg-red-500 my-1 mx-auto px-2 rounded hover:scale-105 hover:bg-red-600 ease-in-out duration-75 text-white">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>

@@ -19,7 +19,7 @@ class PerkFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'desc' => $this->faker->text(),
-            'type' => $this->faker->randomElement(['bonus', 'malus']),
+            'type' => $this->faker->randomElement(['Bonus', 'Malus']),
             'character_id' => $this->faker->numberBetween(1, 10),
         ];
     }
