@@ -14,7 +14,7 @@ class PerkController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Perks', [
+        return Inertia::render('Perks/Index', [
             'perks' => Perk::with('character')->get()
         ]);
 
@@ -26,7 +26,7 @@ class PerkController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Perks/Create');
     }
 
     /**
@@ -34,58 +34,65 @@ class PerkController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
+        $valid_data = Validator::make($request->all(), [
             'name' => ['required'],
             'desc' => ['required'],
             'type' => ['required'],
             'character_id' => ['required'],
         ])->validate();
 
-        return redirect()->back()
-            ->with('message', 'Perk Created Successfully.');
+        Perk::create($valid_data);
+
+        session()->flash('flash.banner', 'Perk créée avec succès');
+        session()->flash('flash.bannerStyle', 'success');
+        return redirect()->route('perks.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Perk $perk)
     {
-        //
+        return Inertia::render('Perks/Show', compact('perk'));
     }
 
     // /**
     //  * Show the form for editing the specified resource.
     //  */
-    // public function edit(string $id)
-    // {
-    //     //
-    // }
+    public function edit(Perk $perk)
+    {
+        return Inertia::render('Perks/Edit', compact('perk'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Perk $perk)
     {
-        Validator::make($request->all(), [
+        $updt = Validator::make($request->all(), [
             'name' => ['required'],
             'desc' => ['required'],
             'type' => ['required'],
             'character_id' => ['required'],
         ])->validate();
 
-        return redirect()->back()
-                ->with('message', 'Perk Updated Successfully.');
+
+        $perk->update($updt);
+
+        session()->flash('flash.banner', 'Perk modifiée avec succès');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('perk.index');
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-public function destroy(Request $request): \Illuminate\Http\RedirectResponse
-    {
-        Perk::destroy($request->id);
 
-        return redirect()->back()
-            ->with('message', 'Perk deleted successfully.');
+     public function destroy(Perk $perk)
+    {
+        $perk->delete();
+        session()->flash('flash.banner', 'Perk supprimée avec succès');
     }
 }

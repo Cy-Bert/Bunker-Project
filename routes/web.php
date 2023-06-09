@@ -36,4 +36,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('perks',PerkController::class)->names('perks');;
+Route::resource('perks',PerkController::class)->names('perks');
