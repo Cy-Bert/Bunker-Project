@@ -1,7 +1,6 @@
 <template>
     <app-layout>
         <button @click="index()" class="bg-slate-300 rounded py-2 px-3 ">Retour</button>
-
         <div class="px-4">
             <div v-if="errors.name" class="text-red-700 text-lg mx-auto flex justify-center">{{ errors.name }}</div>
         <div class="flex my-5">
@@ -18,11 +17,18 @@
             <p class="my-auto mx-auto">Status</p>
             <input v-model="form.status" type="text" class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-auto flex " id="exampleFormControlInput1" placeholder="Statut">
         </div>
-        <div v-if="errors.food" class="text-red-700 text-lg mx-auto flex justify-center">{{ errors.food }}</div>
+
+
+        <div v-if="errors.food" class="text-red-700 text-lg">{{ errors.food }}</div>
         <div class="flex my-5">
             <p class="my-auto mx-auto">food</p>
-            <input v-model="form.food" min="0" type="number" class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-auto flex " id="exampleFormControlInput1" placeholder="Nourriture">
+            <button class="w-20 bg-red-700" v-on:click="form.food -= 1, update(form)" >-</button>
+            <input v-model="form.food" min="0" type="number" class="shadow appearance-none border rounded w-[40%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  " id="exampleFormControlInput1" placeholder="Nourriture">
+            <button class="w-20 bg-red-700" v-on:click="form.food += 1, update(form)">+</button>
         </div>
+
+
+
         <div v-if="errors.heat" class="text-red-700 text-lg mx-auto flex justify-center">{{ errors.heat }}</div>
         <div class="flex my-5">
             <p class="my-auto mx-auto">heat</p>

@@ -24,7 +24,7 @@
                         <td class="px-4">{{ table.heat }}</td>
                         <td class="px-4">{{ table.heal }}</td>
                         <td class="px-4">{{ table.ammo }}</td>
-                        <td class="px-4">{{ table.notes }}</td>
+                        <td class="px-4">{{ table.notes.slice(0,20)}}{{ table.notes.length > 20 ? '...' : '' }}   </td>
 
                         <button @click="edit(table)" class="bg-blue-400 my-3 mx-auto px-4 rounded hover:scale-105 hover:bg-blue-500 ease-in-out duration-75">edit</button>
                         <button @click="destroy(table)" class="bg-red-500 my-3 mx-auto px-2 rounded hover:scale-105 hover:bg-red-600 ease-in-out duration-75">delete</button>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import AppLayout from './../../Layouts/AppLayout.vue'
+import AppLayout from './../../Layouts/AppLayout.vue'
 
     export default {
         components: {
