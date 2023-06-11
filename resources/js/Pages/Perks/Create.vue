@@ -68,7 +68,11 @@ export default {
         create() {
             // console.log(this.form);
             this.$inertia.post('/perks', this.form)
-        }
+        },
+        
+        index: function () {
+            this.$inertia.get('/perks')
+        },
     }
 }
 
