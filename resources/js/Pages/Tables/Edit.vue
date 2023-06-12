@@ -77,9 +77,6 @@
         },
 
         methods: {
-            edit: function(data) {
-                this.form = Object.assign({}, data);
-            },
 
             update: function(data) {
                 this.$inertia.put('/tables/' + this.table.id, data);
