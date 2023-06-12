@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Relation;
+use App\Models\Character;
 use Illuminate\Support\Facades\Validator;
   
 class RelationController extends Controller
@@ -28,14 +29,17 @@ class RelationController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'title' => ['required'],
-            'body' => ['required'],
+            'character_id' => ['required'],
+            'to_character_id' => ['required'],
+            'relation' => ['required','integer','numeric','between:0,100'],
         ])->validate();
   
         Relation::create($request->all());
   
-        return redirect()->back()
-                    ->with('message', 'Relation Created Successfully.');
+        session()->flash('flash.banner', 'Relation created');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('relations.index');
     }
   
     /**
@@ -43,18 +47,16 @@ class RelationController extends Controller
      *
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Relation $relation)
     {
         Validator::make($request->all(), [
-            'title' => ['required'],
-            'body' => ['required'],
+            'character_id' => ['required'],
+            'to_character_id' => ['required'],
+            'relation' => ['required','integer','numeric','between:0,100'],
         ])->validate();
   
-        if ($request->has('id')) {
-            Relation::find($request->input('id'))->update($request->all());
-            return redirect()->back()
-                    ->with('message', 'Relation Updated Successfully.');
-        }
+       $relation->update($request);
+       return redirect()->route('relations.index');
     }
   
     /**
@@ -70,6 +72,12 @@ class RelationController extends Controller
     }
     public function create()
     {
-        return Inertia::render('Relations/Create');  
+        $characters= Character::all(); 
+        return Inertia::render('Relations/Create', compact('characters'));  
+    }
+    public function edit(Relation $relation)
+    { 
+        $characters= Character::all();
+        return Inertia::render('Relations/Edit', compact ('relation'));  
     }
 }

@@ -1,9 +1,9 @@
 <template>
-    <form class="mt-72 ml-[50rem]">
+    <form>
         <p>
             Blaze 1
         </p>
-        <select v-model="form.character_id" class="">
+        <select v-model="form.character_id">
             <option :value="character.id" v-for="character in characters">{{ character.name }}</option>
         </select>
         <p>
@@ -16,8 +16,7 @@
             Relation
         </p>
         <input type="text" v-model="form.relation">
-        <button type="button" @click="create" class="border border-black bg-plus rounded p-2">
-        </button>
+        <button type="button" @click="debug">Add</button>
     </form>
 </template>
 <script>
@@ -30,7 +29,7 @@ export default {
     
     props: {
         characters: Array,
-        relations: Array,
+        relation: Array,
     },
 
     data() {
@@ -44,11 +43,11 @@ export default {
         }
     },
     methods: {
-        create() {
-            this.$inertia.post('/relations',this.form);
+        edit() {
+            this.$inertia.put('/relations/' + relation.id , this.form);
         },
         debug(){
-            console.log(this.form);
+            console.log(relation);
         }
     }
 }

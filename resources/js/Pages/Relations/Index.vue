@@ -108,6 +108,9 @@ export default {
     create() {
       this.$inertia.get('/relations/create')
     },
+    edit(relation) {
+      this.$inertia.get('/relations/' + relation.id + '/edit')
+    },
     destroy(relation) {
        this.$inertia.delete('/relations/' + relation.id , relation)
     }

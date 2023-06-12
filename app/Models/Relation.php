@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Relation extends Model
 {
+    public $timestamps = false;
     use HasFactory;
     protected $fillable = [
         'relation', 'to_character_id', 'character_id'
