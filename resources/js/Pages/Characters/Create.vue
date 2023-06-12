@@ -57,7 +57,7 @@
                 console.log(this.form);
             },
             create() {
-                this.$inertia.post('/characters', this.form);
+                this.$inertia.post(route('characters.store'), this.form);
             },
         },
     }

@@ -72,15 +72,37 @@ class CharacterController extends Controller
      */
     public function edit(character $character)
     {
-        //
+        return Inertia::render("Characters/Edit", compact('character'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, character $character)
+    public function update(Request $request, Character $character)
     {
-        //
+                //  dump($request);
+
+                $validated = $request->validate([
+                    'name' => 'required',
+                    'age' => 'required|integer|numeric',
+                    'size' => 'required|integer|numeric',
+                    'gender' => 'required',
+                    'body_shape' => 'required',
+                    'personality' => 'required',
+                    'status' => 'nullable',
+                    'type' => 'required',
+                    'notes' => 'nullable',
+                ]);
+        
+                // dd($validated);
+        
+                $character->update($validated);
+        
+                session()->flash('flash.banner', 'Character updated');
+                session()->flash('flash.bannerStyle', 'success');
+        
+                return redirect()->route('characters.index');
+        
     }
 
     /**

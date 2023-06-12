@@ -62,7 +62,7 @@ export default {
         },
         methods: {
           destroy(character) {
-            this.$inertia.delete('/characters/' + character.id , character)
+            this.$inertia.delete(route('characters.destroy', character))
           },
         }
     }
