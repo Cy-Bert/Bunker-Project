@@ -125,10 +125,10 @@ class TableController extends Controller
             'name' => ['required'],
             'desc' => ['nullable'],
             'status' => ['required'],
-            'food' => ['numeric'],
-            'heat' => ['numeric'],
-            'heal' => ['numeric'],
-            'ammo' => ['numeric'],
+            'food' => ['numeric', 'min:0'],
+            'heat' => ['numeric', 'min:0'],
+            'heal' => ['numeric', 'min:0'],
+            'ammo' => ['numeric', 'min:0'],
             'notes' => ['nullable'],
         ])->validate();
 
@@ -139,7 +139,6 @@ class TableController extends Controller
         session()->flash('flash.banner', 'Table modifiée avec succès');
         session()->flash('flash.bannerStyle', 'success');
 
-        return redirect()->route('tables.index');
     }
 
     /**

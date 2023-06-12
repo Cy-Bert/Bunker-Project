@@ -18,15 +18,15 @@
 
                 <tbody class="w-full ">
                     <tr v-for="table in tables" class="border-slate-400 border-y-2">
-                        <td class="px-4 text-left w-20">{{ table.id }}</td>
-                        <td class="px-4 text-left w-52">{{ table.name }}</td>
-                        <td class="px-4 text-left">{{ table.desc }}</td>
-                        <td class="px-4 text-left">{{ table.status }}</td>
-
-                        <td class="px-4 text-left w-20">{{ table.food }}
-                            <button v-on:click="counter +=1" >+ </button>
-                            <button v-on:click="counter -=1">- </button>
-                        </td>
+                        <td class="px-4">{{ table.id }}</td>
+                        <td class="px-4">{{ table.name }}</td>
+                        <td class="px-4">{{ table.desc }}</td>
+                        <td class="px-4">{{ table.status }}</td>
+                        <td class="px-4">{{ table.food }}</td>
+                        <td class="px-4">{{ table.heat }}</td>
+                        <td class="px-4">{{ table.heal }}</td>
+                        <td class="px-4">{{ table.ammo }}</td>
+                        <td class="px-4">{{ table.notes.slice(0,20)}}{{ table.notes.length > 20 ? '...' : '' }}   </td>
 
                         <td class="px-4 text-left w-20">{{ table.heat }}</td>
                         <td class="px-4 text-left w-20">{{ table.heal }}</td>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-    import AppLayout from './../../Layouts/AppLayout.vue'
+import AppLayout from './../../Layouts/AppLayout.vue'
 
     export default {
         components: {
