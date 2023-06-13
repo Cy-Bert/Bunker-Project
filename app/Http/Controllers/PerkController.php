@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Perk;
 use Inertia\Inertia;
+use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,8 +18,6 @@ class PerkController extends Controller
         return Inertia::render('Perks/Index', [
             'perks' => Perk::with('character')->get()
         ]);
-
-
     }
 
     /**
@@ -26,7 +25,10 @@ class PerkController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Perks/Create');
+        return Inertia::render(
+            'Perks/Create',
+            ['characters' => Character::all()]
+        );
     }
 
     /**
@@ -61,6 +63,7 @@ class PerkController extends Controller
     //  */
     public function edit(Perk $perk)
     {
+        $perk = $perk->load('character');
         return Inertia::render('Perks/Edit', compact('perk'));
     }
 
@@ -73,7 +76,6 @@ class PerkController extends Controller
             'name' => ['required'],
             'desc' => ['required'],
             'type' => ['required'],
-            'character_id' => ['required'],
         ])->validate();
 
 
@@ -83,14 +85,13 @@ class PerkController extends Controller
         session()->flash('flash.bannerStyle', 'success');
 
         return redirect()->route('perks.index');
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
 
-     public function destroy(Perk $perk)
+    public function destroy(Perk $perk)
     {
         $perk->delete();
         session()->flash('flash.banner', 'Perk supprimée avec succès');

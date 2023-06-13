@@ -4,7 +4,7 @@
 
             <div class="flex items-center justify-center min-h-screen bg-gray-900 flex-col">
                 <button @click="create()"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Create New
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3 hover:scale-105">Create New
                     Perk</button>
                 <div class="col-span-12">
                     <div class="overflow-auto lg:overflow-visible ">
@@ -15,7 +15,7 @@
                                     <th class="uppercase font-extrabold p-3">Name</th>
                                     <th class="uppercase font-extrabold p-3">Desc</th>
                                     <th class="uppercase font-extrabold p-8">Type</th>
-                                    <th class="uppercase font-extrabold p-3">Character Id</th>
+                                    <th class="uppercase font-extrabold p-3">Character</th>
                                     <th class="uppercase font-extrabold p-3">Actions</th>
                                 </tr>
                             </thead>
@@ -29,7 +29,7 @@
                                     <td class="text-gray-300 text-center font-normal rounded-lg border-b border-black uppercase">{{ perk.type }}
                                     </td>
                                     <td class="text-gray-300 text-center font-normal rounded-lg border-b border-black">{{
-                                        perk.character_id
+                                        perk.character.name
                                     }}</td>
                                     <td class="action justify-center items-center content-center text-center font-normal rounded-lg border-b border-black gap-2 flex flex-wrap p-2" >
                                         <button @click="edit(perk)"

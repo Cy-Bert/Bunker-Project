@@ -1,6 +1,6 @@
 <template>
     <bunker-layout>
-        <button @click="index()" class="bg-slate-300 rounded py-2 px-3 ">Retour</button>
+        <button @click="index()" class="bg-slate-300 rounded py-2 px-3 ml-12 hover:scale-105">Retour</button>
 
         <div class="px-4 bg-gray-900 rounded-lg p-5 m-12">
             <div v-if="errors.name" class="text-red-700 text-lg mx-auto flex justify-center ">{{ errors.name }}</div>
@@ -20,24 +20,22 @@
             <div v-if="errors.type" class="text-red-700 text-lg mx-auto flex justify-center">{{ errors.type }}</div>
             <div class="flex my-5">
                 <label for='type' class="m-auto text-white px-7">Type</label>
-                <input v-model="form.type" type="text"
-                    class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-auto flex "
-                    id="exampleFormControlInput1" placeholder="Type">
+                <select v-model="form.type" class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-auto flex">
+                        <option value="Bonus">Bonus</option>
+                        <option value="Malus">Malus</option>
+                    </select>
             </div>
             <div v-if="errors.character_id" class="text-red-700 text-lg mx-auto flex justify-center">{{ errors.character_id
             }}</div>
-            <div class="flex my-5">
-                <label for="character_id" class="my-auto mx-auto text-white px-7">Character_id</label>
-                <input v-model="form.character_id" min="0" type="number"
-                    class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-auto flex "
-                    id="exampleFormControlInput1" placeholder="Character_id">
+            <div class=" mt-8 text-white   text-center uppercase font-bold text-xl ">
+               {{ this.perk.character.name }}
             </div>
 
             <!-- <div v-if="$page.errors.notes" class="text-red-500">{{ $page.errors.notes[0] }}</div> -->
 
             <div class="flex w-full justify-end">
                 <button @click="update(form)"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:scale-105">Update</button>
             </div>
         </div>
     </bunker-layout>
@@ -59,8 +57,8 @@ export default {
                 name: this.perk.name,
                 desc: this.perk.desc,
                 type: this.perk.type,
-                character_id: this.perk.character_id,
             },
+
         }
     },
 
