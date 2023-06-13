@@ -25,8 +25,8 @@
             <label>Notes :</label>
             <input v-model="form.notes">
         </form>
-        <button @click="debug()">debug</button>
-        <button @click="update()">update</button>
+        <button @click="back()">Back</button>
+        <!-- <button @click="update()">Update</button> -->
     </app-layout>
  </template>
 <script>
@@ -39,16 +39,14 @@ export default {
     },
     props: { 
         character: Array,
-    },
-    
+    },  
     methods: {
-        debug() {
-            console.log(character);
-        },
         update() {
-            console.log(this.character.id);
-            this.$inertia.put('/characters/' + this.character.id, this.form);
-        }
+            this.$inertia.put('characters.store', this.form);
+        },
+        back() {
+            this.$inertia.get(route('characters.index'));
+        },
     },
     data() {
         return {
@@ -64,9 +62,13 @@ export default {
             }
         }
     },
-    mounted() {
-        console.log(this);
-
+    watch: {
+        form: {
+            handler(val, oldVal) {
+                this.update()
+            },
+            deep: true
+        },
     }
 }
 </script>

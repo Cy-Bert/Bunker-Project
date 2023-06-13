@@ -56,7 +56,7 @@ class CharacterController extends Controller
         session()->flash('flash.banner', 'Character created');
         session()->flash('flash.bannerStyle', 'success');
 
-        return redirect()->route('characters.index');
+        return redirect()->back();
     }
 
     /**
@@ -101,7 +101,7 @@ class CharacterController extends Controller
                 session()->flash('flash.banner', 'Character updated');
                 session()->flash('flash.bannerStyle', 'success');
         
-                return redirect()->route('characters.index');
+                return redirect()->back();
         
     }
 
@@ -117,6 +117,6 @@ class CharacterController extends Controller
 
             // Relations::where('character_id', $character->id)->delete();
             $character->delete();
-            return redirect()->back();
+            return redirect()->route('characters.index');
     }
 }

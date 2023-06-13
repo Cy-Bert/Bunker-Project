@@ -41,6 +41,8 @@
                     <td>{{ character.user_id }}</td>
                     <td>{{ character.table_id }}</td>
                     <td>{{ character.code_invit }}</td>
+                    <button @click="destroy(character)">Delete</button>
+                    <button @click="edit(character)">Edit</button>
                 </tr>
             </tbody>
         </table>
@@ -62,6 +64,12 @@ export default {
     methods: {
         debug() {
             console.log(character);
+        },
+        destroy(character) {
+            this.$inertia.delete(route('characters.destroy', character))
+        },
+          edit(character) {
+            this.$inertia.get(route('characters.edit', character))
         },
     }
 }

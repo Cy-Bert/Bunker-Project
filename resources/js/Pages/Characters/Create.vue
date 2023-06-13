@@ -25,7 +25,7 @@
             <label>Notes :</label>
             <input v-model='form.notes'>
         </form>
-        <button @click="debug()">debug</button>
+        <button @click="back()">Back</button>
         <button @click="create()">store</button>
     </app-layout>
  </template>
@@ -53,8 +53,8 @@
             }
         },
         methods: {
-            debug() {
-                console.log(this.form);
+            back() {
+                this.$inertia.get(route('characters.index'));
             },
             create() {
                 this.$inertia.post(route('characters.store'), this.form);
