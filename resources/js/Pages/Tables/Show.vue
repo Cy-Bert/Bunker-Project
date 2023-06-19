@@ -1,7 +1,6 @@
 <template>
     <app-layout>
         <button @click="index()" class="bg-slate-300 rounded py-2 px-3 ">Retour</button>
-        <button @click="console.log(this)">console log</button>
         <div class="bg-slate-200 w-[98%] mx-auto mt-8">
             <table class="table-fixed w-full">
                 <thead class="">

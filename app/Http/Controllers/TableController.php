@@ -58,6 +58,7 @@ class TableController extends Controller
             'name' => ['required', ''],
             'desc' => ['required'],
             'status' => ['required'],
+            'notes' => ['nullable'],
         ])->validate();
 
         // $valid_data['user_id'] = auth()->id();
