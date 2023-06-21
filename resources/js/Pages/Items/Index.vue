@@ -69,8 +69,8 @@ export default {
       this.$inertia.get('/items/' + item.id + '/edit', item);
     },
 
-    create(item) {
-      this.$inertia.get('/items/create', item);
+    create() {
+      this.$inertia.get('/items/create');
     },
  
   }

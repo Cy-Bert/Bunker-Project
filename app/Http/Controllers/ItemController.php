@@ -33,7 +33,7 @@ class ItemController extends Controller
             'character_id' => ['required'],
         ])->validate();
 
-        // $valid_data['user_id'] = auth()->id();
+      
 
         Item::create($valid_data);
 
@@ -56,9 +56,7 @@ class ItemController extends Controller
         return Inertia::render('Items/Edit', compact('item'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Item $item)
     {
         $test = Validator::make($request->all(), [
