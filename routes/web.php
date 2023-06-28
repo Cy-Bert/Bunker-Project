@@ -34,9 +34,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::resource("tables", TableController::class);
 });
 
-Route::resource("tables", TableController::class);
 // Route::put('/tables/{table}', [TableController::class, 'update']);
 // Route::get('/tables/create', [TableController::class, 'create']);
 

@@ -30,38 +30,14 @@ class TableController extends Controller
         return Inertia::render('Tables/Create');
     }
 
-    // {
-    //     $request->validate([
-    //         'name' => ['required'],
-    //         'desc' => ['required'],
-    //         'status' => ['required'],
-    //         'food' => ['required'],
-    //         'heat' => ['required'],
-    //         'heal' => ['required'],
-    //         'ammo' => ['required'],
-    //         'notes' => ['required'],
-    //     ]
-    //     );
-
-    //     Table::create($request->all());
-    //     return redirect()->back()
-    //                 ->with('message', 'Table Created Successfully.');
-    // }
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $valid_data = Validator::make($request->all(), [
-            'name' => ['required', ''],
+            'name' => ['required',],
             'desc' => ['required'],
             'status' => ['required'],
             'notes' => ['nullable'],
         ])->validate();
-
-        // $valid_data['user_id'] = auth()->id();
 
         Table::create($valid_data);
 
@@ -69,57 +45,18 @@ class TableController extends Controller
         session()->flash('flash.bannerStyle', 'success');
 
         return redirect()->route('tables.index');
-
     }
 
-        // Post::create($request->all(),[
-        //     'name' => $request->name,
-        //     'desc' => $request->desc,
-        //     'status' => $request->status,
-        //     'food' => intval($request->food),
-        //     'heat' => intval($request->heat),
-        //     'heal' => intval($request->heal),
-        //     'ammo' => intval($request->ammo),
-        //     'notes' => $request->notes,
-        // ]);
-
-
-        // Post::create($request->all(),[
-        //     'name' => $request->name,
-        //     'desc' => $request->desc,
-        //     'status' => $request->status,
-        //     'food' => intval($request->food),
-        //     'heat' => intval($request->heat),
-        //     'heal' => intval($request->heal),
-        //     'ammo' => intval($request->ammo),
-        //     'notes' => $request->notes,
-        // ]);
-
-
-    //     return redirect()->back()
-
-    //                 ->with('message', 'Table Created Successfully.');
-    // }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Table $table)
     {
         return Inertia::render('Tables/Show', compact('table'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Table $table)
     {
         return Inertia::render('Tables/Edit', compact('table'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Table $table)
     {
         $test = Validator::make($request->all(), [
@@ -133,13 +70,10 @@ class TableController extends Controller
             'notes' => ['nullable'],
         ])->validate();
 
-
-
         $table->update($test);
 
         session()->flash('flash.banner', 'Table modifiée avec succès');
         session()->flash('flash.bannerStyle', 'success');
-
     }
 
     /**
