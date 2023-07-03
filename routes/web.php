@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\PerkController;
 use App\Http\controllers\TableController;
 use App\Http\Controllers\RelationController;
 
@@ -45,3 +46,4 @@ Route::middleware([
 
 Route::resource('items', ItemController::class);
 Route::resource('characters', CharacterController::class);
+Route::resource('perks', PerkController::class)->names('perks');
