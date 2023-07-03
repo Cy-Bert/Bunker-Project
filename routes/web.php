@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\controllers\TableController;
+use App\Http\Controllers\RelationController;
 
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CharacterController;
@@ -28,6 +29,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::resource('relations', RelationController::class);
 
 Route::middleware([
     'auth:sanctum',
