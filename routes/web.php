@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\controllers\TableController;
+
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CharacterController;
 
@@ -35,6 +37,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::resource("tables", TableController::class);
 });
 
 Route::resource('items', ItemController::class);
