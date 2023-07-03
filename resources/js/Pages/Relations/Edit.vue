@@ -16,7 +16,7 @@
             Relation
         </p>
         <input type="text" v-model="form.relation">
-        <button type="button" @click="debug">Add</button>
+        <button type="button" class="shadow p-1" @click="update(form)">Add</button>
     </form>
 </template>
 <script>
@@ -34,11 +34,11 @@ export default {
 
     data() {
         return {
-            characters: this.characters,
+            
             form: {
-                character_id: null,
-                to_character_id: null,
-                relation: null
+                character_id: this.relation.character_id ,
+                to_character_id: this.relation.to_character_id ,
+                relation: this.relation.relation
             }
         }
     },
@@ -46,8 +46,11 @@ export default {
         edit() {
             this.$inertia.put('/relations/' + relation.id , this.form);
         },
+        update: function(data) {
+                this.$inertia.put('/relations/' + this.relation.id, data);
+            },
         debug(){
-            console.log(relation);
+            console.log(this.characters);
         }
     }
 }
