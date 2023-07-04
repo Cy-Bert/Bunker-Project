@@ -18,7 +18,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             backgroundImage:{
-                'plus': "url('/public/storage/Asset/icônes/MaterialSymbolsAdd.svg')"
+                'plus': "url('/public/assets/icons/MaterialSymbolsAdd.svg')"
             }
         },
     },

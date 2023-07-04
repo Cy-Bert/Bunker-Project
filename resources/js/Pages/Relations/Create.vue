@@ -16,7 +16,7 @@
             Relation
         </p>
         <input type="text" v-model="form.relation">
-        <button type="button" @click="create" class="border border-black bg-plus rounded p-2">
+        <button type="button" @click="create" class="border border-black bg-plus rounded p-2 h-8 w-8 hover:border-grey">
         </button>
     </form>
 </template>
