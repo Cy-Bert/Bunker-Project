@@ -28,7 +28,8 @@
                         <td class="px-4">{{ table.heal }}</td>
                         <td class="px-4">{{ table.ammo }}</td>
                         <td class="px-4">
-                            <span v-if="table.notes">{{ table.notes.slice(0, 20) }}{{ table.notes.length > 20 ? '...' : '' }} </span>
+                            <span v-if="table.notes">{{ table.notes.slice(0, 20) }}{{ table.notes.length > 20 ? '...' : ''
+                            }} </span>
                         </td>
                         <div class="justify-around flex w-fit mr-4">
                             <button @click="edit(table)"
@@ -243,7 +244,7 @@ export default {
                 heal: this.selectedTable ? this.selectedTable.heal : '',
                 ammo: this.selectedTable ? this.selectedTable.ammo : '',
                 notes: this.selectedTable ? this.selectedTable.notes : '',
-                id : this.selectedTable ? this.selectedTable.id : '',
+                id: this.selectedTable ? this.selectedTable.id : '',
             },
             form_create: {
                 name: null,

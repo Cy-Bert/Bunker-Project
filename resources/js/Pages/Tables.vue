@@ -1,7 +1,6 @@
 
 <template>
     <AppLayout title="">
-
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Manage Post - (Laravel 9 Inertia JS CRUD with Jetstream & Tailwind CSS - ItSolutionStuff.com)
@@ -130,7 +129,6 @@ export default {
 
     components: {
         AppLayout,
-        Welcome,
     },
 
     props: ['data', 'errors'],
