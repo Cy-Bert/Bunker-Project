@@ -59,7 +59,7 @@ class TableController extends Controller
 
     public function update(Request $request, Table $table)
     {
-        $test = Validator::make($request->all(), [
+        $valid_data = Validator::make($request->all(), [
             'name' => ['required'],
             'desc' => ['nullable'],
             'status' => ['required'],
@@ -70,7 +70,7 @@ class TableController extends Controller
             'notes' => ['nullable'],
         ])->validate();
 
-        $table->update($test);
+        $table->update($valid_data);
 
         session()->flash('flash.banner', 'Table modifiée avec succès');
         session()->flash('flash.bannerStyle', 'success');
